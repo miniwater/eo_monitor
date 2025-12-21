@@ -1663,35 +1663,31 @@
             // The user said "whichever metric is fetched, show it". 
             // For KPIs, this is easy. For charts with multiple lines, adding one line at a time is fine too (ECharts supports merge).
             
-            // Let's iterate all metrics and fire requests
-            allMetrics.forEach(async (metric) => {
-                try {
-                    // Fetch current
-                    const res = await fetchData(metric);
-                    if (res) {
-                        const processed = processData(res, metric);
-                        results[metric] = processed;
+            // Let's iterate all metrics and fire requests in parallel
+            allMetrics.forEach((metric) => {
+                const section = getSection(metric);
 
-                        // Immediately update the section this metric belongs to
-                        const section = getSection(metric);
+                // 1. Fetch Current Data
+                fetchData(metric).then(res => {
+                    if (res) {
+                        results[metric] = processData(res, metric);
+                        // Update UI immediately when current data arrives
                         if (section && updateMap[section]) {
                             updateMap[section](results);
                         }
-
-                        // Fetch previous (for growth) - Fire and forget, update when ready
-                        fetchData(metric, prevStartTime, prevEndTime).then(prevRes => {
-                            if (prevRes) {
-                                results[metric + '_prev'] = processData(prevRes, metric);
-                                // Re-update section to show growth
-                                if (section && updateMap[section]) {
-                                    updateMap[section](results);
-                                }
-                            }
-                        });
                     }
-                } catch (e) {
-                    console.error(`Error loading metric ${metric}:`, e);
-                }
+                }).catch(e => console.error(`Error loading metric ${metric}:`, e));
+
+                // 2. Fetch Previous Data (Parallel)
+                fetchData(metric, prevStartTime, prevEndTime).then(prevRes => {
+                    if (prevRes) {
+                        results[metric + '_prev'] = processData(prevRes, metric);
+                        // Re-update UI to show growth (only if current data is already there)
+                        if (results[metric] && section && updateMap[section]) {
+                            updateMap[section](results);
+                        }
+                    }
+                }).catch(e => console.error(`Error loading prev metric ${metric}:`, e));
             });
         }
 
