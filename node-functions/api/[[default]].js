@@ -11,6 +11,18 @@ import { CommonClient } from "tencentcloud-sdk-nodejs-common";
 
 const app = express();
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://www.krjojo.com');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    
+    // 关键：拦截并快速响应浏览器的 OPTIONS 预检请求
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
+
 // Function to read keys
 function getKeys() {
     // 1. Try Environment Variables first
