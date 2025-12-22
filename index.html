@@ -699,7 +699,7 @@
                     </div>
 
                     <!-- Client IP -->
-                    <div class="rounded-xl border bg-card text-card-foreground shadow-sm">
+                    <!-- <div class="rounded-xl border bg-card text-card-foreground shadow-sm">
                         <div class="flex flex-col space-y-1.5 p-6">
                             <h3 class="font-semibold leading-none tracking-tight">客户端IP流量排行</h3>
                         </div>
@@ -714,7 +714,7 @@
                         <div class="p-6 pt-0">
                             <div id="chart_top_request_sip" class="w-full h-[500px]"></div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Referer -->
                     <div class="rounded-xl border bg-card text-card-foreground shadow-sm">
@@ -837,7 +837,7 @@
         let chartTopDomain = null;
         let chartTopUrl = null;
         let chartTopResourceType = null;
-        let chartTopSip = null;
+        // let chartTopSip = null;
         let chartTopReferer = null;
         let chartTopUaDevice = null;
         let chartTopUaBrowser = null;
@@ -849,7 +849,7 @@
         let chartTopRequestDomain = null;
         let chartTopRequestUrl = null;
         let chartTopRequestResourceType = null;
-        let chartTopRequestSip = null;
+        // let chartTopRequestSip = null;
         let chartTopRequestReferer = null;
         let chartTopRequestUaDevice = null;
         let chartTopRequestUaBrowser = null;
@@ -1424,7 +1424,7 @@
             chartTopDomain = echarts.init(document.getElementById('chart_top_domain'));
             chartTopUrl = echarts.init(document.getElementById('chart_top_url'));
             chartTopResourceType = echarts.init(document.getElementById('chart_top_resource_type'));
-            chartTopSip = echarts.init(document.getElementById('chart_top_sip'));
+            // chartTopSip = echarts.init(document.getElementById('chart_top_sip'));
             chartTopReferer = echarts.init(document.getElementById('chart_top_referer'));
             chartTopUaDevice = echarts.init(document.getElementById('chart_top_ua_device'));
             chartTopUaBrowser = echarts.init(document.getElementById('chart_top_ua_browser'));
@@ -1436,7 +1436,7 @@
             chartTopRequestDomain = echarts.init(document.getElementById('chart_top_request_domain'));
             chartTopRequestUrl = echarts.init(document.getElementById('chart_top_request_url'));
             chartTopRequestResourceType = echarts.init(document.getElementById('chart_top_request_resource_type'));
-            chartTopRequestSip = echarts.init(document.getElementById('chart_top_request_sip'));
+            // chartTopRequestSip = echarts.init(document.getElementById('chart_top_request_sip'));
             chartTopRequestReferer = echarts.init(document.getElementById('chart_top_request_referer'));
             chartTopRequestUaDevice = echarts.init(document.getElementById('chart_top_request_ua_device'));
             chartTopRequestUaBrowser = echarts.init(document.getElementById('chart_top_request_ua_browser'));
@@ -2504,7 +2504,7 @@
             renderTopChart(results, chartTopDomain, 'l7Flow_outFlux_domain');
             renderTopChart(results, chartTopUrl, 'l7Flow_outFlux_url');
             renderTopChart(results, chartTopResourceType, 'l7Flow_outFlux_resourceType');
-            renderTopChart(results, chartTopSip, 'l7Flow_outFlux_sip');
+            // renderTopChart(results, chartTopSip, 'l7Flow_outFlux_sip');
             //renderTopChart(results, chartTopReferer, 'l7Flow_outFlux_referers'); //以前方案
             updateTopRefererChart(results); //降级处理，包含“字段不存在”处理
             renderTopChart(results, chartTopUaDevice, 'l7Flow_outFlux_ua_device');
@@ -2519,7 +2519,7 @@
             renderTopChart(results, chartTopRequestDomain, 'l7Flow_request_domain');
             renderTopChart(results, chartTopRequestUrl, 'l7Flow_request_url');
             renderTopChart(results, chartTopRequestResourceType, 'l7Flow_request_resourceType');
-            renderTopChart(results, chartTopRequestSip, 'l7Flow_request_sip');
+            // renderTopChart(results, chartTopRequestSip, 'l7Flow_request_sip');
             //renderTopChart(results, chartTopRequestReferer, 'l7Flow_request_referers');
             updateTopRequestRefererChart(results); //降级方案
             renderTopChart(results, chartTopRequestUaDevice, 'l7Flow_request_ua_device');
@@ -2814,7 +2814,7 @@
                 ]
             };
 
-            chartTopSip.setOption(option);
+            // chartTopSip.setOption(option);
         }
 
         //无调用，作为备用方案来处理
@@ -3292,7 +3292,7 @@
                 ]
             };
 
-            chartTopRequestSip.setOption(option);
+            // chartTopRequestSip.setOption(option);
         }
 
         //无调用，作为备份使用
@@ -3517,7 +3517,7 @@
             chartTopDomain && chartTopDomain.resize();
             chartTopUrl && chartTopUrl.resize();
             chartTopResourceType && chartTopResourceType.resize();
-            chartTopSip && chartTopSip.resize();
+            // chartTopSip && chartTopSip.resize();
             chartTopReferer && chartTopReferer.resize();
             chartTopUaDevice && chartTopUaDevice.resize();
             chartTopUaBrowser && chartTopUaBrowser.resize();
@@ -3529,7 +3529,7 @@
             chartTopRequestDomain && chartTopRequestDomain.resize();
             chartTopRequestUrl && chartTopRequestUrl.resize();
             chartTopRequestResourceType && chartTopRequestResourceType.resize();
-            chartTopRequestSip && chartTopRequestSip.resize();
+            // chartTopRequestSip && chartTopRequestSip.resize();
             chartTopRequestReferer && chartTopRequestReferer.resize();
             chartTopRequestUaDevice && chartTopRequestUaDevice.resize();
             chartTopRequestUaBrowser && chartTopRequestUaBrowser.resize();
